@@ -88,7 +88,6 @@ def main():
       student.delete_grade(name)
 
       selection = 0
-      # If name is in the existing data, set grade to N/A
 
     elif selection == 5:
       print("Program Closed!")
