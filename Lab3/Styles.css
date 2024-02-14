@@ -108,6 +108,13 @@ body {
   font-weight: bold;
   border: 0;
 }
+.button-number:hover, .button-number-zero:hover, .button-clear:hover, .button-arithmetic:hover, .button-equals:hover{
+  opacity: 80%;
+}
+.clicked{
+  color: #ff9f0a;
+  background-color: white;
+}
 
 .bottom-phone {
   display: flex;

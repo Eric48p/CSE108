@@ -2,16 +2,10 @@ document.addEventListener("DOMContentLoaded", function() {
   // Get the output box element
   const outputBox = document.querySelector(".output-box");
 
-  // Get all the number buttons
+  // Get all buttons
   const numberButtons = document.querySelectorAll(".button-number, .button-number-zero");
-
-  // Get all the arithmetic operation buttons
   const arithmeticButtons = document.querySelectorAll(".button-arithmetic");
-
-  // Get the clear button
   const clearButton = document.querySelector(".button-clear");
-
-  // Get the equals button
   const equalsButton = document.querySelector(".button-equals");
 
   // Variable to store the first number
@@ -27,13 +21,16 @@ document.addEventListener("DOMContentLoaded", function() {
     outputBox.textContent = "0";
   }
 
-  // Add click event listener to each number button
+  // Add event listener on click to each number button
   numberButtons.forEach(function(button) {
     button.addEventListener("click", function() {
+      // Remove clicked class
+      arithmeticButtons.forEach(button => button.classList.remove('clicked'));
+
       // Get the text content of the clicked button
       const number = this.textContent;
 
-      // If the current content of the output box is "0", replace it with the clicked number
+      // If the current content of the output box is 0, replace it with the clicked number
       if (outputBox.textContent === "0") {
         outputBox.textContent = number;
       } else {
@@ -43,13 +40,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Add click event listener to arithmetic operation buttons
+  // Add event listener on click to each arithmetic operation buttons
   arithmeticButtons.forEach(function(button) {
     button.addEventListener("click", function() {
       // Get the text content of the clicked button (arithmetic operation)
       const operation = this.textContent;
 
-      // Store the current content of the output box as the first operand
+      // Store the current content of the output box as the firstNum
       firstNum = parseFloat(outputBox.textContent);
       console.log("First number = ", firstNum)
       // console.log(typeof(firstNum))
@@ -58,15 +55,18 @@ document.addEventListener("DOMContentLoaded", function() {
       selectedOperation = operation;
       console.log("Selected operation: ", selectedOperation)
 
-      // Reset the output box content to "0" for entering the second number
+      // Reset the output box content to 0 for entering the second number
       outputBox.textContent = "0";
+
+      // Add clicked class to a selected arithmetic button
+      this.classList.add('clicked');
     });
   });
 
-  // Add click event listener to the equals button
+  // Add event listener on click to the equals button
   equalsButton.addEventListener("click", function() {
     console.log("The equals button was pressed")
-    // If there is a first operand, a selected operation, and the output box is not "0"
+    // If there is a firstNum, a selected operation, and the output box is not 0
     if (firstNum !== null && selectedOperation !== null && outputBox.textContent !== "0") {
       // Get the second number
       const secondNum = parseFloat(outputBox.textContent);
@@ -93,8 +93,6 @@ document.addEventListener("DOMContentLoaded", function() {
           result = firstNum / secondNum;
           console.log("Result = ", result)
           break;
-        default:
-          result = null;
       }
 
       // Update the output box with the result
