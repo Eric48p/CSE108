@@ -1,17 +1,17 @@
-body{
+body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
-.background{
+.background {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
 }
-.phone{
+.phone {
   display: flex;
   background-color: black;
   width: 400px;
@@ -21,68 +21,102 @@ body{
   align-items: center;
 }
 
-.top-phone-info{
+.top-phone-info {
   display: flex;
   width: 100%;
   height: 50px;
   /* background-color: green; */
 }
-.top-phone-info p{
+.top-phone-info p {
   margin: 0;
   padding: 15px 30px;
   color: white;
   font-weight: bold;
 }
 
-.calculator{
+.calculator {
   display: flex;
   width: 90%;
   height: 600px;
-  background-color: red;
+  /* background-color: red; */
   flex-direction: column;
   gap: 10px;
 }
-.output-box{
+.output-box {
   display: flex;
-  background-color: green;
+  /* background-color: green; */
   width: 100%;
   height: 250px;
+  color: white;
+  font-size: 70px;
+  align-items: end;
+  justify-content: end;
 }
-.row{
+.row {
   display: flex;
-  background-color: green;
+  /* background-color: green; */
   width: 100%;
   height: 70px;
   gap: 25px;
 }
-.button-number{
+.button-number {
   display: flex;
-  background-color: grey;
+  background-color: #333333;
   width: 75px;
   border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  border: 0;
 }
-.button-arithmetic{
+.button-number-zero {
   display: flex;
-  background-color: goldenrod;
+  background-color: #333333;
+  width: 175px;
+  border-radius: 120px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  border: 0;
+}
+.button-arithmetic,
+.button-equals {
+  display: flex;
+  background-color: #ff9f0a;
   width: 75px;
   border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  border: 0;
 }
-.button-clear{
+.button-clear {
   display: flex;
-  background-color: white;
+  background-color: #a5a5a5;
   width: 275px;
   border-radius: 120px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  border: 0;
 }
 
-
-.bottom-phone{
+.bottom-phone {
   display: flex;
   width: 100%;
   height: 50px;
   justify-content: center;
   align-items: end;
 }
-.bottom-phone-line{
+.bottom-phone-line {
   display: flex;
   background-color: white;
   border-radius: 10px;
