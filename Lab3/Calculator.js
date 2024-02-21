@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
       // Store the current content of the output box as the firstNum
       firstNum = parseFloat(outputBox.textContent);
       console.log("First number = ", firstNum)
-      // console.log(typeof(firstNum))
+      console.log(typeof(firstNum))
 
       // Store the selected arithmetic operation
       selectedOperation = operation;
@@ -69,9 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // If there is a firstNum, a selected operation, and the output box is not 0
     if (firstNum !== null && selectedOperation !== null && outputBox.textContent !== "0") {
       // Get the second number
-      const secondNum = parseFloat(outputBox.textContent);
+      let secondNum = parseFloat(outputBox.textContent);
       console.log("Second number = ", secondNum)
-      // console.log(typeof(secondNum))
+      console.log(typeof(secondNum))
 
       // Perform the arithmetic operation based on the selected operation
       let result;
@@ -86,13 +86,21 @@ document.addEventListener("DOMContentLoaded", function() {
           console.log("Result = ", result)
           break;
         case "x":
-          result = firstNum * secondNum;
-          console.log("Result = ", result)
-          break;
-        case "÷":
-          result = firstNum / secondNum;
-          console.log("Result = ", result)
-          break;
+          tempResult = firstNum * secondNum;
+            if (Number.isInteger(tempResult)) {
+              result = firstNum * secondNum;
+            } else {
+              result = (firstNum * secondNum).toFixed(3);
+            }
+            break;
+          case "÷":
+            tempResult = firstNum / secondNum;
+            if (Number.isInteger(tempResult)) {
+              result = firstNum / secondNum;
+            } else {
+              result = (firstNum / secondNum).toFixed(3);
+            }
+            break;
       }
 
       // Update the output box with the result
