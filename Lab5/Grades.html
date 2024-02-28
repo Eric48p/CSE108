@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grades</title>
-  <link rel="stylesheet" href="Styles.css" />
-  <script src="Grades.js"></script>
-</head>
-<body>
-  <div class="background">
-    <div class="banner">
-      <div class="banner-left">
-        <img src="UC_Merced_Seal.png" style="height: 90px; padding-right: 200px; margin-left: 10px;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bobcat Grade Portal</title>
+    <link rel="stylesheet" href="Styles.css" />
+    <script src="Grades.js"></script>
+  </head>
+  <body>
+    <div class="background">
+      <div class="banner">
+        <div class="banner-left">
+          <img
+            src="https://myconnect.ucmerced.edu/sites/all/themes/UCMerced/ucmlogo.png"
+            style="height: 35px; padding-right: 200px; margin-left: 10px"
+          />
+        </div>
+        <div class="banner-middle">
+          <h1>Bobcat Grade Portal</h1>
+        </div>
+        <div class="banner-right">
+          <input type="search" id="search-input" placeholder="Search" />
+          <button id="new-student-button" onclick="newStudent()">
+            New Student
+          </button>
+        </div>
       </div>
-      <div class="banner-middle">
-        <h1>Bobcat Grade Portal</h1>
-      </div>
-      <div class="banner-right">
-        <input type="search" id="search-input" placeholder="Search">
-      <button id="new-student-button">New Student</button>
+      <div class="grades-table">
+        <!-- Table content is being rendered by js file -->
       </div>
     </div>
-    <div class="grades-table">
-
+    <div id="overlay" class="overlay">
+      <div class="popup">
+        <!-- Popup content is being rendered by js file depending on action -->
+      </div>
     </div>
-  </div>
-  <div id="overlay" class="overlay">
-    <div class="popup">
-      <!-- Popup content -->
-      <span class="close" onclick="closePopup()">&times;</span>
-      <h2>Create New Student</h2>
-      <input type="text" placeholder="Student Name">
-      <input type="number" placeholder="Grade">
-      <input type="submit" placeholder="submit">
-      <!-- Add your form or content here -->
-    </div>
-  </div>
-</body>
+  </body>
 </html>
