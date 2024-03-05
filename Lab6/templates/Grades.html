@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bobcat Grade Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/Styles.css') }}" />
+    <script src="{{ url_for('static', filename='scripts/Grades.js') }}"></script>
+  </head>
+  <body>
+    <div class="background">
+      <div class="banner">
+        <div class="banner-left">
+          <img
+            src="https://myconnect.ucmerced.edu/sites/all/themes/UCMerced/ucmlogo.png"
+            style="height: 35px; padding-right: 200px; margin-left: 10px"
+          />
+        </div>
+        <div class="banner-middle">
+          <h1>Bobcat Grade Portal</h1>
+        </div>
+        <div class="banner-right">
+          <input type="search" id="search-input" placeholder="Search" />
+          <button id="new-student-button" onclick="newStudent()">
+            New Student
+          </button>
+        </div>
+      </div>
+      <div class="grades-table">
+        <!-- Table content is being rendered by js file -->
+      </div>
+    </div>
+    <div id="overlay" class="overlay">
+      <div class="popup">
+        <!-- Popup content is being rendered by js file depending on action -->
+      </div>
+    </div>
+  </body>
+</html>

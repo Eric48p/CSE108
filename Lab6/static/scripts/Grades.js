@@ -1,4 +1,4 @@
-fetch("https://amhep.pythonanywhere.com/grades")
+fetch("http://localhost:5000/grades")
   .then(function (response) {
     return response.json() // Parse the JSON data
   })
@@ -6,29 +6,29 @@ fetch("https://amhep.pythonanywhere.com/grades")
     console.log(data) // Display Name and Grade data in console
 
     // Create table element
-    var table = document.createElement("table")
+    const table = document.createElement("table");
 
     // Create table header
-    var header = table.createTHead()
-    var row = header.insertRow()
-    var headers = ["Name", "Grade", "Edit", "Delete"]
-    for (var i = 0; i < headers.length; i++) {
-      var th = document.createElement("th")
+    const header = table.createTHead();
+    const row = header.insertRow();
+    const headers = ["Name", "Grade", "Edit", "Delete"];
+    for (let i = 0; i < headers.length; i++) {
+      const th = document.createElement("th");
       th.textContent = headers[i]
       row.appendChild(th)
     }
 
     // Create table body and populate data
-    var body = table.createTBody()
-    var filteredData = data // Initialize filtered data with all data (search bar)
+    const body = table.createTBody();
+    let filteredData = data; // Initialize filtered data with all data (search bar)
 
     function renderTable(filteredData) {
       body.innerHTML = "" // Clear previous data
-      var counter = 1
-      for (var key in filteredData) {
+      let counter = 1;
+      for (let key in filteredData) {
         if (filteredData.hasOwnProperty(key)) {
-          var row = body.insertRow()
-          var nameCell = row.insertCell()
+          const row = body.insertRow();
+          const nameCell = row.insertCell();
           if (key.includes("<")){
             key = "Dummy" + counter
             counter = counter + 1
@@ -36,14 +36,14 @@ fetch("https://amhep.pythonanywhere.com/grades")
           } else{
             nameCell.textContent = key
           }
-          var gradeCell = row.insertCell()
+          const gradeCell = row.insertCell();
           gradeCell.textContent = filteredData[key] + "%"
-          var editCell = row.insertCell()
+          const editCell = row.insertCell();
           editCell.innerHTML =
             '<button class="edit" onclick="editStudent(\'' +
             key +
             "')\">Edit</button>" // Add Edit button
-          var deleteCell = row.insertCell()
+          const deleteCell = row.insertCell();
           deleteCell.innerHTML =
             '<button class="delete" onclick="deleteStudent(\'' +
             key +
@@ -55,13 +55,13 @@ fetch("https://amhep.pythonanywhere.com/grades")
     renderTable(filteredData) // Initial render
 
     // Append table to the grades-table div
-    var gradesTableDiv = document.querySelector(".grades-table")
+    const gradesTableDiv = document.querySelector(".grades-table");
     gradesTableDiv.appendChild(table)
 
     // Search functionality
-    var searchInput = document.querySelector("#search-input")
+    const searchInput = document.querySelector("#search-input");
     searchInput.addEventListener("input", function (event) {
-      var searchTerm = event.target.value.toLowerCase()
+      const searchTerm = event.target.value.toLowerCase();
       filteredData = Object.keys(data).reduce(function (acc, key) {
         if (key.toLowerCase().includes(searchTerm)) {
           acc[key] = data[key]
@@ -78,7 +78,7 @@ fetch("https://amhep.pythonanywhere.com/grades")
 // Function to show the overlay popup
 function showPopup() {
   // Clear existing content of the popup div
-  var popup = document.querySelector(".popup")
+  const popup = document.querySelector(".popup");
   popup.innerHTML = ""
 
   // Reset input field values
@@ -95,9 +95,9 @@ function closePopup() {
 
 // Function to reset input field values
 function resetInputFields() {
-  var inputFields = document.querySelectorAll(
-    ".popup input[type='text'], .popup input[type='number']"
-  )
+  const inputFields = document.querySelectorAll(
+      ".popup input[type='text'], .popup input[type='number']"
+  );
   inputFields.forEach(function (input) {
     input.value = "" // Reset input field value
   })
@@ -108,32 +108,32 @@ function newStudent() {
   showPopup()
 
   // Get the existing popup div
-  var popup = document.querySelector(".popup")
+  const popup = document.querySelector(".popup");
 
   // Create close button
-  var span = document.createElement("span")
+  const span = document.createElement("span");
   span.innerHTML = "&times;"
   span.className = "close"
   span.onclick = closePopup
 
   // Create h2 element
-  var h2 = document.createElement("h2")
+  const h2 = document.createElement("h2");
   h2.textContent = "Create New Student"
 
   // Create input for student name
-  var nameInput = document.createElement("input")
+  const nameInput = document.createElement("input");
   nameInput.type = "text"
   nameInput.placeholder = "Student Name"
   nameInput.id = "studentName"
 
   // Create input for student grade
-  var gradeInput = document.createElement("input")
+  const gradeInput = document.createElement("input");
   gradeInput.type = "number"
   gradeInput.placeholder = "Grade"
   gradeInput.id = "studentGrade"
 
   // Create submit button
-  var submitButton = document.createElement("input")
+  const submitButton = document.createElement("input");
   submitButton.type = "submit"
   submitButton.value = "Submit"
   submitButton.onclick = createStudent
@@ -149,15 +149,15 @@ function newStudent() {
 // Function for creating a new student
 function createStudent() {
   // Retrieve input values
-  var name = document.getElementById("studentName").value
-  var grade = document.getElementById("studentGrade").value
+  const name = document.getElementById("studentName").value;
+  const grade = document.getElementById("studentGrade").value;
 
-  if (name != "" && grade != "") {
+  if (name !== "" && grade !== "") {
     console.log("Student Name: " + name)
     console.log("Grade: " + grade)
 
     const student = { name: name, grade: grade }
-    fetch("https://amhep.pythonanywhere.com/grades", {
+    fetch("http://localhost:5000/grades", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -184,33 +184,33 @@ function editStudent(key) {
   const studentName = key
 
   // Get the existing popup div
-  var popup = document.querySelector(".popup")
+  const popup = document.querySelector(".popup");
 
   // Create close button
-  var span = document.createElement("span")
+  const span = document.createElement("span");
   span.innerHTML = "&times;"
   span.className = "close"
   span.onclick = closePopup
 
   // Create h2 element
-  var h2 = document.createElement("h2")
+  const h2 = document.createElement("h2");
   h2.textContent = "Edit Student Grade"
 
   // Create input for student name
-  var nameInput = document.createElement("input")
+  const nameInput = document.createElement("input");
   nameInput.type = "text"
   nameInput.id = "studentName"
   nameInput.value = studentName // Set the value of the input to the key
   nameInput.readOnly = true // Make the input uneditable
 
   // Create input for student grade
-  var gradeInput = document.createElement("input")
+  const gradeInput = document.createElement("input");
   gradeInput.type = "number"
   gradeInput.placeholder = "Grade"
   gradeInput.id = "studentGrade"
 
   // Create submit button
-  var submitButton = document.createElement("input")
+  const submitButton = document.createElement("input");
   submitButton.type = "submit"
   submitButton.value = "Submit"
   submitButton.onclick = function () {
@@ -228,13 +228,13 @@ function editStudent(key) {
 // Function for when the submit button is clicked when editing a students grade
 function submitEditStudent(studentName) {
   // Get the new student grade from the input
-  var grade = document.getElementById("studentGrade").value
+  const grade = document.getElementById("studentGrade").value;
 
-  if (grade != "") {
+  if (grade !== "") {
     console.log("Grade: " + grade)
 
     const student = { grade: grade }
-    fetch(`https://amhep.pythonanywhere.com/grades/${studentName}`, {
+    fetch(`http://localhost:5000/grades/${studentName}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -250,18 +250,18 @@ function submitEditStudent(studentName) {
         console.error("Error:", error)
       })
   } else {
-    console.log("Error")
+    console.error("Error: Grade is empty")
   }
 }
 
 // Function for when you click the delete button
 function deleteStudent(key) {
   // Confirm deletion with user
-  var confirmation = confirm(`Are you sure you want to delete ${key}?`)
+  const confirmation = confirm(`Are you sure you want to delete ${key}?`);
 
   if (confirmation) {
     // Send a DELETE request to the backend API
-    fetch(`https://amhep.pythonanywhere.com/grades/${key}`, {
+    fetch(`http://localhost:5000/grades/${key}`, {
       method: "DELETE",
     })
       .then((response) => {
