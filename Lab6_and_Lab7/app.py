@@ -65,7 +65,7 @@ def update_grade(id):
     if student:
         # Update the student's grade
         student.grade = grade
-        db.session.commit()  # Commit the transaction to save the changes
+        db.session.commit()  # Save changes
         return jsonify({'message': 'Grade updated successfully'})
     else:
         return jsonify({'error': 'Student not found or invalid data provided'}), 404
@@ -75,11 +75,11 @@ def update_grade(id):
 @app.route('/grades/<int:id>', methods=['DELETE'])
 def delete_student(id):
     try:
-        # Query the database to find the student by their ID
+        # Find the student by their ID
         student = Student.query.get(id)
 
         if student:
-            # Delete the student record from the database
+            # Delete the student from the database
             db.session.delete(student)
             db.session.commit()
             return jsonify({'message': 'Student deleted successfully'})
